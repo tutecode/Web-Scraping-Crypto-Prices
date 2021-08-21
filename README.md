@@ -5,9 +5,9 @@
 
 ## 1. Create "requirements.txt" file and install libraries
 
-'''
+```bash
 pip install -r requirements.txt
-'''bash
+```
 
 https://www.crummy.com/software/BeautifulSoup/bs4/doc/
 
