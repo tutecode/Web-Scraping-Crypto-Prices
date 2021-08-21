@@ -16,5 +16,4 @@ Beautiful Soup is a Python library for pulling data out of HTML and XML files. I
 ## 2. Create "main.py" file for main code and import libraries
 
 
-
 ## 3. Run "python3 main.py"
