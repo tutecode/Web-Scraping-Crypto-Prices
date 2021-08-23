@@ -29,12 +29,16 @@ coins = {}
 coin_data = json.loads(data.contents[0])
 listings = coin_data['props']['initialState']['cryptocurrency']['listingLatest']['data']
 
+
+
 for i in listings:
     coins[str(i['id'])] = i['slug']
 
+# Print 100 List of coins
+# print(coins)
+
 # we now have a dictionary of coin IDs and slugs we can use to scrape historical data.
 # print(listings)
-
 
 ## Fetching Historical Data
 
@@ -46,35 +50,37 @@ for i in coins:
 
 quotes = historical_data['props']['initialState']['cryptocurrency']['ohlcvHistorical'][i]['quotes']
 
-info = historical_data['props']['initialState']['cryptocurrency']['ohlcvHistorical'][i]
+# print(quotes)
 
-### Putting everything together with pandas
-
-market_cap = []
-volume = []
-timestamp = []
-name = []
-symbol = []
-slug = []
-
-for j in quotes:
-    market_cap.append(j['quote']['USD']['market_cap'])
-    volume.append(j['quote']['USD']['volume'])
-    timestamp.append(j['quote']['USD']['timestamp'])
-    name.append(info['name'])
-    symbol.append(info['symbol'])
-    slug.append(coins[i])
-
-df = pd.DataFrame(columns = ['marketcap', 'volume', 'timestamp', 'name', 'symbol', 'slug'])
-
-df['marketcap'] = market_cap
-df['volume'] = volume
-df['timestamp'] = timestamp
-df['name'] = name
-df['symbol'] = symbol
-df['slug'] = slug
-
-# we want to save this to a csv file
-df.to_csv('criptoes.csv', index = False)
-
-print('Saved on ')
+# info = historical_data['props']['initialState']['cryptocurrency']['ohlcvHistorical'][i]
+#
+# ### Putting everything together with pandas
+#
+# market_cap = []
+# volume = []
+# timestamp = []
+# name = []
+# symbol = []
+# slug = []
+#
+# for j in quotes:
+#     market_cap.append(j['quote']['USD']['market_cap'])
+#     volume.append(j['quote']['USD']['volume'])
+#     timestamp.append(j['quote']['USD']['timestamp'])
+#     name.append(info['name'])
+#     symbol.append(info['symbol'])
+#     slug.append(coins[i])
+#
+# df = pd.DataFrame(columns = ['marketcap', 'volume', 'timestamp', 'name', 'symbol', 'slug'])
+#
+# df['marketcap'] = market_cap
+# df['volume'] = volume
+# df['timestamp'] = timestamp
+# df['name'] = name
+# df['symbol'] = symbol
+# df['slug'] = slug
+#
+# # we want to save this to a csv file
+# df.to_csv('criptoes.csv', index = False)
+#
+# print('Saved on ')
