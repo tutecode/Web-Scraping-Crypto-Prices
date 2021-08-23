@@ -3,6 +3,8 @@
 
  Project from: https://bryanf.medium.com/web-scraping-crypto-prices-with-python-41072ea5b5bf
 
+## ¡¡¡NOT WORK!!!
+
 ## 1. Create "requirements.txt" file and install libraries
 
 ```bash

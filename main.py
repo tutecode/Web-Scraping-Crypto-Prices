@@ -5,8 +5,14 @@ import json
 import time
 
 # Get data
-cmc = requests.get('https://coinmarketcap.com/')
+# cmc = requests.get('https://coinmarketcap.com/')
+# soup = BeautifulSoup(cmc.content, 'html.parser')
+
+cmc = requests.get('https://coinmarketcap.com/currencies/bitcoin/historical-data/')
 soup = BeautifulSoup(cmc.content, 'html.parser')
+print(soup.title)
+print(soup.prettify())
+
 
 # This will give us the entire web page
 # print(soup.title)
@@ -21,18 +27,16 @@ soup = BeautifulSoup(cmc.content, 'html.parser')
 # {"id":1,"name":"Bitcoin","symbol":"BTC","slug":"bitcoin"
 
 # <script id="__NEXT_DATA__" type="application/json">
-data = soup.find('script', id='__NEXT_DATA__', type='application/json')
-
-coins = {}
-
-# using data.contents[0] to remove script tags
-coin_data = json.loads(data.contents[0])
-listings = coin_data['props']['initialState']['cryptocurrency']['listingLatest']['data']
-
-
-
-for i in listings:
-    coins[str(i['id'])] = i['slug']
+# data = soup.find('script', id='__NEXT_DATA__', type='application/json')
+#
+# coins = {}
+#
+# # using data.contents[0] to remove script tags
+# coin_data = json.loads(data.contents[0])
+# listings = coin_data['props']['initialState']['cryptocurrency']['listingLatest']['data']
+#
+# for i in listings:
+#     coins[str(i['id'])] = i['slug']
 
 # Print 100 List of coins
 # print(coins)
@@ -42,13 +46,13 @@ for i in listings:
 
 ## Fetching Historical Data
 
-for i in coins:
-    page = requests.get(f'https://coinmarketcap.com/currencies/{coins[i]}/historical-data/?start=20200101&end=20200630')
-    soup = BeautifulSoup(page.content, 'html.parser')
-    data = soup.find('script', id='__NEXT_DATA__', type='application/json')
-    historical_data = json.loads(data.contents[0])
-
-quotes = historical_data['props']['initialState']['cryptocurrency']['ohlcvHistorical'][i]['quotes']
+# for i in coins:
+#     page = requests.get(f'https://coinmarketcap.com/currencies/{coins[i]}/historical-data/?start=20200101&end=20200630')
+#     soup = BeautifulSoup(page.content, 'html.parser')
+#     data = soup.find('script', id='__NEXT_DATA__', type='application/json')
+#     historical_data = json.loads(data.contents[0])
+#
+# quotes = historical_data['props']['initialState']['cryptocurrency']['ohlcvHistorical'][i]['quotes']
 
 # print(quotes)
 
